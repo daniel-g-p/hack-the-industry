@@ -11,7 +11,11 @@ const post = async (req, res) => {
     return res.redirect("/");
   }
 
-  const websiteProfile = await service.getWebsiteProfile(input.website);
+  // const websiteProfile = await service.getWebsiteProfile(input.website);
+  // console.log(websiteProfile);
+
+  const jobsProfile = await service.getJobsProfile(input.name);
+  console.log(jobsProfile);
 
   // Website => Positioning
   // WerLiefertWas => Supplier Marketplace
