@@ -11,22 +11,36 @@ const post = async (req, res) => {
     return res.redirect("/");
   }
 
-  // const websiteProfile = await service.getWebsiteProfile(input.website);
+  const websiteProfile = await service.getWebsiteProfile(input.website);
   // console.log(websiteProfile);
 
   const jobsProfile = await service.getJobsProfile(input.name);
-  console.log(jobsProfile);
+  // console.log(jobsProfile);
 
-  // Website => Positioning
+  const wlwProfile = await service.getWlwProfile(input.name);
+  // console.log(wlwProfile);
+
+  const newsProfile = await service.getNewsProfile(input.name);
+  // console.log(newsProfile);
+
+  const profile = {
+    keywords: websiteProfile.slice(0, 25).map((keyword) => {
+      return { keyword: keyword.word, count: keyword.count };
+    }),
+    jobs: jobsProfile,
+    address: wlwProfile.address || "",
+    facts: wlwProfile.facts || [],
+    news: newsProfile,
+  };
+
   // WerLiefertWas => Supplier Marketplace
   // Instagram => Social Media
   // LinkedIn => Social Media
   // Kununu => Employer Branding
-  // Google Jobs => Jobs
   // Google News => Recent Developments
   // Google Search => Search Engine Marketing
 
-  return res.redirect("/");
+  return res.render("profile", { profile });
 };
 
 export default { get, post };

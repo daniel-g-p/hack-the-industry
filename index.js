@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import config from "./config.js";
 
@@ -8,7 +10,12 @@ import { startWordnet } from "./utilities/wordnet.js";
 
 const app = express();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 app.set("view engine", "ejs");
+
+app.use(express.static(__dirname + "/static"));
+app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
