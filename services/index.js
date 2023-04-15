@@ -18,7 +18,7 @@ const validateInput = (reqBody) => {
 };
 
 const getWebsiteProfile = async (website) => {
-  const browser = await puppeteer();
+  const browser = await puppeteer(false);
   const page = await browser.newPage();
   await page.goto(website);
 
@@ -113,7 +113,7 @@ const getWebsiteProfile = async (website) => {
 };
 
 const getJobsProfile = async (name) => {
-  const browser = await puppeteer();
+  const browser = await puppeteer(false);
   const page = await browser.newPage();
   const url = encodeURI("https://www.google.com/search?ibp=htl;jobs&q=" + name);
   await page.goto(url);
@@ -161,7 +161,7 @@ const getJobsProfile = async (name) => {
 };
 
 const getWlwProfile = async (name) => {
-  const browser = await puppeteer();
+  const browser = await puppeteer(false);
   const page = await browser.newPage();
   const url = encodeURI("https://www.wlw.de/de/suche?q=" + name);
   await page.goto(url);
@@ -232,7 +232,7 @@ const getWlwProfile = async (name) => {
 };
 
 const getNewsProfile = async (name) => {
-  const browser = await puppeteer();
+  const browser = await puppeteer(false);
   const page = await browser.newPage();
   const url = encodeURI("https://www.google.com/search?tbm=nws&q=" + name);
   await page.goto(url);
@@ -267,6 +267,8 @@ const getNewsProfile = async (name) => {
     const newsItem = { author, title, date };
     news.push(newsItem);
   }
+
+  await browser.close();
 
   return news;
 };
