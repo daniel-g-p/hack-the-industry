@@ -15,7 +15,8 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "puppeteer": "^19.9.0"
+    "puppeteer": "^19.9.0",
+    "wordnet": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
